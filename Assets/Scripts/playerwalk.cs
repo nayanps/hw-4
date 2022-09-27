@@ -5,35 +5,21 @@ using UnityEngine;
 public class playerwalk : MonoBehaviour
 {
     public float speed = 5.0f;
+    public Rigidbody2D rb;
+    Vector2 movement;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 pos = transform.position;
+        movement.x = Input.GetAxisRaw("Horizontal");
+        movement.y = Input.GetAxisRaw("Vertical");
 
-        if (Input.GetKey("w")) // moves NE
-        {
-            pos.y += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("s")) //moves SW
-        {
-            pos.y -= speed * Time.deltaTime;
-        }
-        if (Input.GetKey("d")) //moves SE
-        {
-            pos.x += speed * Time.deltaTime;
-        }
-        if (Input.GetKey("a")) //moves NW
-        {
-            pos.x -= speed * Time.deltaTime;
-        }
+    }
 
-        transform.position = pos;
+    void FixedUpdate()
+    {
+        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);
 
     }
 }
