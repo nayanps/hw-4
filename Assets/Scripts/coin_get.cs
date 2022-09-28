@@ -9,6 +9,10 @@ public class coin_get : MonoBehaviour
         if (collision.tag == "Player")
         {
             Destroy(gameObject);
+            score_manager.instance.AddPoints();
         }
     }
+
+    
+
 }
